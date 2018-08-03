@@ -37,3 +37,4 @@ src/main/webapp/META-INF
 Servers/
 .recommenders
 .springBeans
+datasources.properties
