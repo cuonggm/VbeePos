@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.vbee.vbeepos.model">
+	<class name="Department" table="Departments">
+		<id name="id" column="id">
+			<generator class="increment" />
+		</id>
+
+		<property name="name" type="string">
+			<column name="name" />
+		</property>
+		
+		<many-to-one name="branch" class="Branch"
+			column="branch_id" not-null="true" />
+			
+		<list name="profiles" inverse="true">
+			<key column="department_id" not-null="true" />
+			<index column="id" />
+			<one-to-many class="Profile" />
+		</list>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.vbee.vbeepos.model">
+	<class name="Profile" table="Profiles">
+		<id name="id" column="id">
+			<generator class="increment" />
+		</id>
+
+		<property name="name" type="string">
+			<column name="name" />
+		</property>
+		
+		<property name="gender" type="string">
+			<column name="gender" />
+		</property>
+		
+		<property name="birthday" type="timestamp">
+			<column name="birthday" />
+		</property>
+		
+		<many-to-one name="department" class="Department"
+			column="department_id" not-null="true" />
+			
+		<one-to-one name="account" class="Account" />
+	</class>
+</hibernate-mapping>
