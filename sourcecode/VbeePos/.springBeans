@@ -7,10 +7,14 @@
 	</configSuffixes>
 	<enableImports><![CDATA[true]]></enableImports>
 	<configs>
-		<config>src/main/webapp/WEB-INF/configs/servlet-context.xml</config>
+		<config>src/main/webapp/WEB-INF/configs/root-context.xml</config>
+		<config>src/main/webapp/WEB-INF/configs/web-context.xml</config>
 	</configs>
 	<autoconfigs>
-		<config>src/main/webapp/WEB-INF/configs/app-context.xml</config>
+		<config>src/main/webapp/WEB-INF/configs/hibernate.xml</config>
+		<config>src/main/webapp/WEB-INF/configs/service.xml</config>
+		<config>src/main/webapp/WEB-INF/configs/dao.xml</config>
+		<config>src/main/webapp/WEB-INF/configs/tiles.xml</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>
