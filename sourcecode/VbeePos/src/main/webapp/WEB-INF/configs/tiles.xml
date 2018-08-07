@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+  <definition name="baselayout" template="/views/layout/layout.jsp">
+  	<put-attribute name="header" value="/views/layout/header.jsp" />
+    <put-attribute name="body" value="" />
+    <put-attribute name="footer" value="/views/layout/footer.jsp" />
+  </definition>
+ 
+  <definition name="home" extends="baselayout">
+    <put-attribute name="body" value="/views/home.jsp" />
+  </definition>
+  
+  <definition name="branches-new" extends="baselayout">
+    <put-attribute name="body" value="/views/branch/new.jsp" />
+  </definition>
+ 
+</tiles-definitions>
