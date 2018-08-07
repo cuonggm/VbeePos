@@ -3,6 +3,7 @@
 <tiles-definitions>
   <definition name="baselayout" template="/views/layout/layout.jsp">
   	<put-attribute name="header" value="/views/layout/header.jsp" />
+  	<put-attribute name="leftpane" value="/views/layout/leftpane.jsp" />
     <put-attribute name="body" value="" />
     <put-attribute name="footer" value="/views/layout/footer.jsp" />
   </definition>
@@ -11,8 +12,12 @@
     <put-attribute name="body" value="/views/home.jsp" />
   </definition>
   
+  <definition name="branches-index" extends="baselayout">
+    <put-attribute name="body" value="/views/branches/index.jsp" />
+  </definition>
+  
   <definition name="branches-new" extends="baselayout">
-    <put-attribute name="body" value="/views/branch/new.jsp" />
+    <put-attribute name="body" value="/views/branches/new.jsp" />
   </definition>
  
 </tiles-definitions>
