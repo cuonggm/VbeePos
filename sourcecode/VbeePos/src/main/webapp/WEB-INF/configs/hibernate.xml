@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
     http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -12,7 +13,8 @@
 	<tx:annotation-driven proxy-target-class="true"
 		transaction-manager="transactionManager" />
 
-	<context:property-placeholder location="classpath:datasources.properties" />
+	<context:property-placeholder
+		location="classpath:datasources.properties" />
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -31,10 +33,6 @@
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
-				<prop key="hibernate.c3p0.min_size">10</prop>
-				<prop key="hibernate.c3p0.max_size">150</prop>
-				<prop key="hibernate.c3p0.max_statements">300</prop>
-				<prop key="hibernate.c3p0.timeout">1800</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.show_sql">false</prop>
 				<prop key="hibernate.format_sql">false</prop>
@@ -55,7 +53,6 @@
 			</list>
 		</property>
 	</bean>
-
 
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
