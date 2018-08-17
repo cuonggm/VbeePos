@@ -46,6 +46,7 @@
 		<interceptor>
 			<mapping path="/**" />
 			<exclude-mapping path="/login/" />
+			<exclude-mapping path="/assets/**" />
 			<beans:bean
 				class="com.vbee.vbeepos.interceptor.LoginInterceptor"></beans:bean>
 		</interceptor>

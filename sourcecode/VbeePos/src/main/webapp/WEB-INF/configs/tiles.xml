@@ -27,7 +27,11 @@
 		<put-attribute name="body"
 			value="/views/login/login.jsp" />
 	</definition>
-
-
+	
+	<!-- Gift -->
+	<definition name="gift-new" extends="mainlayout">
+		<put-attribute name="body"
+			value="/views/gift/new.jsp" />
+	</definition>
 
 </tiles-definitions>
