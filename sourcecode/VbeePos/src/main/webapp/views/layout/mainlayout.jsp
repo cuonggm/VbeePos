@@ -38,7 +38,7 @@
 				<div class="body maximum">
 					<!-- Flash -->
 					<c:if test="${not empty message}">
-						<div class="alert alert-${flash}" role="alert">${message}</div>
+						<div class="alert alert-${flash} m-0" role="alert">${message}</div>
 					</c:if>
 					<tiles:insertAttribute name="body"></tiles:insertAttribute>
 				</div>

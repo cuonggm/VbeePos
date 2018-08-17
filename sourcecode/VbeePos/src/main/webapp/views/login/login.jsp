@@ -5,7 +5,7 @@
 
 <div class="login-background">
 	<div class="login">
-		<form>
+		<form action="/vbeepos/login/" method="post">
 			<div class="login-title">
 				<h1>Login</h1>
 				<p>VbeePos | Trao gửi yêu thương</p>
