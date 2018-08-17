@@ -1,4 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-primary-color maximum-width custom-header">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="context" value="${pageContext.request.contextPath}" />
+
+<nav
+	class="navbar navbar-expand-lg navbar-light bg-primary-color maximum-width custom-header">
 	<a class="navbar-brand" href="/vbeepos" style="color: white;">VbeePos</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#navbarSupportedContent"
@@ -8,9 +14,8 @@
 	</button>
 
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item"><a class="nav-link white-text"
-				href="/vbeepos/branches/new">Branches</a></li>
-		</ul>
+		<form class="form-inline ml-auto mr-3 pull-right" action="${context}/logout/" method="post">
+			<button class="btn btn-danger" type="submit">Logout</button>
+		</form>
 	</div>
 </nav>
