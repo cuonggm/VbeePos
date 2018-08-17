@@ -14,7 +14,12 @@
 	</button>
 
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		<form class="form-inline ml-auto mr-3 pull-right" action="${context}/logout/" method="post">
+		<ul class="navbar-nav">
+			<li class="nav-item"><a class="btn btn-light"
+				href="${context}/gifts/new/">Send Gift</a></li>
+		</ul>
+		<form class="form-inline ml-auto mr-3 pull-right"
+			action="${context}/logout/" method="post">
 			<button class="btn btn-danger" type="submit">Logout</button>
 		</form>
 	</div>
