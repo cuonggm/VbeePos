@@ -1,19 +1,24 @@
-const datasource = [ {
-	"id" : 1,
-	"name" : 'Giáp Minh Cương'
-}, {
-	"id" : 2,
-	"name" : 'Vũ Thị Trần Vân'
-}, {
-	"id" : 3,
-	"name" : 'Nguyễn Hoàng Anh '
+function loadSuggestUsers() {
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			console.log(this.responseText);
+			var jsonObj = JSON.parse(this.responseText);
+			console.log(jsonObj);
+			setAutoComplete(jsonObj);
+		}
+	};
+	xhttp.open("GET", "http://localhost:8080/vbeepos/users/json/", true);
+	xhttp.send();
 }
-// ...
-]
 
-$('#receiver').autocomplete({
-	nameProperty : 'name',
-	valueProperty : 'id',
-	valueField : '#receiver_id',
-	dataSource : datasource
-});
+function setAutoComplete(json) {
+	$('#receiver').autocomplete({
+		nameProperty : 'displayInfo',
+		valueProperty : 'accountId',
+		valueField : '#receiver_id',
+		dataSource : json
+	});
+};
+
+$(document).ready(loadSuggestUsers);
