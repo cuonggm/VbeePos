@@ -1,22 +1,21 @@
 package com.vbee.vbeepos.dao.impl;
 
 import java.io.Serializable;
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
-
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 
 public abstract class GenericDAO<PK extends Serializable, T> {
 
 	private SessionFactory sessionFactory;
 	private Class<T> persistenceClass;
 
+	@SuppressWarnings("unchecked")
 	public GenericDAO() {
-
+		this.persistenceClass = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass())
+				.getActualTypeArguments()[1];
 	}
 
 	public T findById(Serializable id) {
@@ -30,14 +29,8 @@ public abstract class GenericDAO<PK extends Serializable, T> {
 	}
 
 	public List<T> loadAll() {
-		CriteriaBuilder builder = getSessionFactory().getCriteriaBuilder();
-
-		CriteriaQuery<T> criteria = builder.createQuery(getPersistenceClass());
-		Root<T> root = criteria.from(getPersistenceClass());
-		criteria.select(root);
-
-		List<T> entities = getSession().createQuery(criteria).getResultList();
-		return entities;
+		Query<T> query = getSession().createQuery("from " + getPersistenceClass().getName(), getPersistenceClass());
+		return query.getResultList();
 	}
 
 	public boolean delete(T entity) {

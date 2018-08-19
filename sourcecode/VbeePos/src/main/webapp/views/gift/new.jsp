@@ -31,8 +31,8 @@
 		<div class="form-group">
 			<label for="receiver">Receiver</label> <input type="text"
 				class="form-control" id="receiver" aria-describedby="account name"
-				placeholder="Ex: Vũ Thị Trần Vân"> <input type="hidden"
-				id="receiver_id" name="receiver_id">
+				placeholder="Ex: Vũ Thị Trần Vân" autocomplete="off"> <input
+				type="hidden" id="receiver_id" name="receiver_id">
 		</div>
 		<div class="form-group">
 			<label for="message">Message</label>

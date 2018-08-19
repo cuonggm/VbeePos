@@ -1,7 +1,6 @@
 package com.vbee.vbeepos.dao.impl;
 
 import org.hibernate.query.Query;
-
 import com.vbee.vbeepos.dao.AccountDAO;
 import com.vbee.vbeepos.model.Account;
 
