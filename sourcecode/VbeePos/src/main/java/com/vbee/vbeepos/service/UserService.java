@@ -8,4 +8,6 @@ public interface UserService {
 
 	List<User> loadAll();
 
+	User findById(Long id);
+
 }
