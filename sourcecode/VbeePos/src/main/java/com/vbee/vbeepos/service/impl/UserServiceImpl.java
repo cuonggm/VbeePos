@@ -40,6 +40,21 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	@Override
+	public User findById(Long id) {
+		Account account = accountDAO.findById(id);
+		User user = new User();
+		user.setName(account.getProfile().getName());
+		user.setAccountId(account.getId());
+		user.setEmail(account.getEmail());
+		user.setGender(account.getProfile().getGender());
+		user.setRole(account.getRole());
+		user.setBirthday(DateTimeUtil.format(account.getProfile().getBirthday()));
+		user.setDepartment(account.getProfile().getDepartment().getName());
+		user.setBranch(account.getProfile().getDepartment().getBranch().getName());
+		return user;
+	}
+
 	public AccountDAO getAccountDAO() {
 		return accountDAO;
 	}
