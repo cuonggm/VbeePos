@@ -3,9 +3,20 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd">
-	
-	<bean id="accountDAO" class="com.vbee.vbeepos.dao.impl.AccountDAOImpl">
+
+	<bean id="accountDAO"
+		class="com.vbee.vbeepos.dao.impl.AccountDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="hashTagDAO"
+		class="com.vbee.vbeepos.dao.impl.HashTagDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
+	<bean id="giftDAO"
+		class="com.vbee.vbeepos.dao.impl.GiftDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
 </beans>
