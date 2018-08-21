@@ -13,9 +13,12 @@
 		class="com.vbee.vbeepos.dao.impl.HashTagDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
-	<bean id="giftDAO"
-		class="com.vbee.vbeepos.dao.impl.GiftDAOImpl">
+
+	<bean id="giftDAO" class="com.vbee.vbeepos.dao.impl.GiftDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="clapDAO" class="com.vbee.vbeepos.dao.impl.ClapDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
