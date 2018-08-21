@@ -12,6 +12,7 @@ public class Account {
 	private List<Gift> sentGifts;
 	private List<Gift> receivedGifts;
 	private List<Clap> claps;
+	private Long points;
 
 	public Account() {
 
@@ -80,6 +81,14 @@ public class Account {
 
 	public void setClaps(List<Clap> claps) {
 		this.claps = claps;
+	}
+
+	public Long getPoints() {
+		return points;
+	}
+
+	public void setPoints(Long points) {
+		this.points = points;
 	}
 
 }
