@@ -17,6 +17,16 @@
 		<ul class="navbar-nav">
 			<li class="nav-item"><a class="btn btn-light"
 				href="${context}/gifts/new/">Send Gift</a></li>
+			<c:if test="${not empty userProfile}">
+				<li class="nav-item pl-3"><a class="btn btn-light" href="#">Received
+						Gifts <span class="badge badge-danger">
+							${userProfile.receivedGiftCount} </span>
+				</a></li>
+				<li class="nav-item pl-3"><a class="btn btn-light" href="#">Sent
+						Gifts <span class="badge badge-danger">
+							${userProfile.sentGiftCount} </span>
+				</a></li>
+			</c:if>
 		</ul>
 		<form class="form-inline ml-auto mr-3 pull-right"
 			action="${context}/logout/" method="post">

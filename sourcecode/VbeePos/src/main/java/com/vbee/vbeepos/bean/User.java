@@ -11,6 +11,8 @@ public class User {
 	private String birthday;
 	private String department;
 	private String branch;
+	private Long receivedGiftCount;
+	private Long sentGiftCount;
 
 	public User() {
 
@@ -86,6 +88,22 @@ public class User {
 
 	public void setBranch(String branch) {
 		this.branch = branch;
+	}
+
+	public Long getReceivedGiftCount() {
+		return receivedGiftCount;
+	}
+
+	public void setReceivedGiftCount(Long receivedGiftCount) {
+		this.receivedGiftCount = receivedGiftCount;
+	}
+
+	public Long getSentGiftCount() {
+		return sentGiftCount;
+	}
+
+	public void setSentGiftCount(Long sentGiftCount) {
+		this.sentGiftCount = sentGiftCount;
 	}
 
 }
