@@ -45,4 +45,15 @@
 			</bean>
 		</property>
 	</bean>
+
+	<bean id="clapService" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.vbee.vbeepos.service.impl.ClapServiceImpl">
+				<property name="clapDAO" ref="clapDAO" />
+				<property name="accountDAO" ref="accountDAO" />
+				<property name="giftDAO" ref="giftDAO" />
+			</bean>
+		</property>
+	</bean>
+
 </beans>

@@ -19,4 +19,11 @@ public class AccountDAOImpl extends GenericDAO<Long, Account> implements Account
 				.executeUpdate();
 	}
 
+	@Override
+	public Account addPoints(Long points, Long accountId) {
+		Account account = findById(accountId);
+		account.setPoints(account.getPoints() + points);
+		return account;
+	}
+
 }
