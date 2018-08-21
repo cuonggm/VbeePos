@@ -1,9 +1,12 @@
 package com.vbee.vbeepos.service.impl;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import com.vbee.vbeepos.bean.GiftInfo;
 import com.vbee.vbeepos.dao.AccountDAO;
 import com.vbee.vbeepos.dao.GiftDAO;
 import com.vbee.vbeepos.dao.HashTagDAO;
@@ -67,6 +70,36 @@ public class GiftServiceImpl implements GiftService {
 		return giftDAO.saveOrUpdate(gift);
 	}
 
+	@Override
+	public List<GiftInfo> loadAllGiftInfo() {
+		List<GiftInfo> giftInfoList = new ArrayList<>();
+		try {
+			List<Gift> giftList = giftDAO.loadAll();
+			for(Gift gift : giftList) {
+				GiftInfo giftInfo = loadGiftInfo(gift);
+				giftInfoList.add(giftInfo);
+			}
+			return giftInfoList;
+		}catch(Exception e) {
+			return Collections.emptyList();
+		}
+	}
+
+	private GiftInfo loadGiftInfo(Gift gift) {
+		GiftInfo giftInfo  = new GiftInfo();
+		giftInfo.setId(gift.getId());
+		giftInfo.setMessage(gift.getMessage());
+		giftInfo.setPoints(gift.getPoints());
+		giftInfo.setSentTime(gift.getSentTime());
+		giftInfo.setClaps(Long.valueOf(gift.getClaps().size()));
+		giftInfo.setHashTag(gift.getHashTag().getTag());
+		giftInfo.setSender(gift.getSender().getProfile().getName());
+		giftInfo.setSenderEmail(gift.getSender().getEmail());
+		giftInfo.setReceiver(gift.getReceiver().getProfile().getName());
+		giftInfo.setReceiverEmail(gift.getReceiver().getEmail());
+		return giftInfo;
+	}
+	
 	public GiftDAO getGiftDAO() {
 		return giftDAO;
 	}

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.vbee.vbeepos.bean.GiftInfo;
 import com.vbee.vbeepos.model.HashTag;
 import com.vbee.vbeepos.service.GiftService;
 import com.vbee.vbeepos.service.HashTagService;
@@ -25,7 +26,7 @@ public class GiftController extends BaseController {
 
 	@Autowired
 	private GiftService giftService;
-
+	
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
 	public String newz(Model model) {
 		List<HashTag> hashTags = hashTagService.loadAll();
@@ -49,4 +50,10 @@ public class GiftController extends BaseController {
 		return "redirect:/gifts/new/";
 	}
 
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String list(Model model) {
+		List<GiftInfo> giftList = giftService.loadAllGiftInfo();
+		model.addAttribute("giftList", giftList);
+		return "gift-list";
+	}
 }

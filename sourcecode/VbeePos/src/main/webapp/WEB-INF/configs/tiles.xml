@@ -34,4 +34,9 @@
 			value="/views/gift/new.jsp" />
 	</definition>
 
+	<!-- Gift -->
+	<definition name="gift-list" extends="mainlayout">
+		<put-attribute name="body"
+			value="/views/gift/list.jsp" />
+	</definition>
 </tiles-definitions>
