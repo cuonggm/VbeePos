@@ -42,7 +42,7 @@
 		</list>
 
 		<property name="points" type="long">
-			<column name="points" not-null="true" default="0" />
+			<column name="points" not-null="true" default="400" />
 		</property>
 	</class>
 </hibernate-mapping>
