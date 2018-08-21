@@ -50,6 +50,9 @@ public class GiftServiceImpl implements GiftService {
 			throw new Exception("Can not send gift for myself");
 		}
 		Account sender = accountDAO.findById(senderId);
+		if (sender.getPoints() < points) {
+			throw new Exception("You do not have enough points to send!");
+		}
 		Account receiver = accountDAO.findById(receiverId);
 		HashTag tag = hashTagDAO.findByTag(hashTag);
 		Gift gift = new Gift();
@@ -59,6 +62,8 @@ public class GiftServiceImpl implements GiftService {
 		gift.setPoints(points);
 		gift.setMessage(message);
 		gift.setSentTime(new Date());
+		sender.setPoints(sender.getPoints() - points);
+		accountDAO.saveOrUpdate(sender);
 		return giftDAO.saveOrUpdate(gift);
 	}
 
