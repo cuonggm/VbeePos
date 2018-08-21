@@ -124,5 +124,31 @@
 	width: auto;
 	height: auto;
 	text-align: center;
+	color: white;
+}
+
+/* Admin Pane */
+#admin-title {
+	padding: 5px;
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+	width: auto;
+	height: auto;
+	text-align: center;
+	color: white;
+}
+
+#admin-pane {
+	margin: 10px;
+	padding: 10px;
+	border-radius: 10px;
+	background-color: #5DADE2;
+	color: white;
+	font-size: 15px;
+}
+
+#btn-reset-points {
+	background-color: white;
 	color: #5DADE2;
 }
