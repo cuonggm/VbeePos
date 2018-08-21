@@ -38,4 +38,14 @@ public class AccountServiceImpl implements AccountService {
 		this.accountDAO = accountDAO;
 	}
 
+	@Override
+	public int updatePoints(Long adminId) throws Exception {
+		Account account = accountDAO.findById(adminId);
+		if (account.getRole().equals("admin")) {
+			return accountDAO.updatePoints();
+		} else {
+			throw new Exception("You do not have permission to reset points!");
+		}
+	}
+
 }

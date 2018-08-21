@@ -13,4 +13,10 @@ public class AccountDAOImpl extends GenericDAO<Long, Account> implements Account
 		return query.getSingleResult();
 	}
 
+	@Override
+	public int updatePoints() {
+		return getSession().createQuery("update Account set points = :points").setParameter("points", Long.valueOf(400))
+				.executeUpdate();
+	}
+
 }

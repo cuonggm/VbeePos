@@ -12,33 +12,37 @@
 		<property name="email" type="string">
 			<column name="email" />
 		</property>
-		
+
 		<property name="password" type="string">
 			<column name="password" />
 		</property>
-		
+
 		<property name="role" type="string">
 			<column name="role" />
 		</property>
-		
+
 		<one-to-one name="profile" class="Profile" />
-		
+
 		<list name="sentGifts" inverse="true">
 			<key column="sender_id" not-null="true" />
 			<index column="id" />
 			<one-to-many class="Gift" />
 		</list>
-		
+
 		<list name="receivedGifts" inverse="true">
 			<key column="receiver_id" not-null="true" />
 			<index column="id" />
 			<one-to-many class="Gift" />
 		</list>
-		
+
 		<list name="claps" inverse="true">
 			<key column="clapper_id" not-null="true" />
 			<index column="id" />
 			<one-to-many class="Clap" />
 		</list>
+
+		<property name="points" type="long">
+			<column name="points" not-null="true" default="0" />
+		</property>
 	</class>
 </hibernate-mapping>
