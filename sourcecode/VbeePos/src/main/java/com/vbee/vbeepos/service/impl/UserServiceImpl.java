@@ -6,7 +6,9 @@ import java.util.List;
 import com.vbee.vbeepos.bean.User;
 import com.vbee.vbeepos.dao.AccountDAO;
 import com.vbee.vbeepos.model.Account;
+import com.vbee.vbeepos.model.Gift;
 import com.vbee.vbeepos.service.UserService;
+import com.vbee.vbeepos.util.CollectionUtil;
 import com.vbee.vbeepos.util.DateTimeUtil;
 
 public class UserServiceImpl implements UserService {
@@ -52,6 +54,13 @@ public class UserServiceImpl implements UserService {
 		user.setBirthday(DateTimeUtil.format(account.getProfile().getBirthday()));
 		user.setDepartment(account.getProfile().getDepartment().getName());
 		user.setBranch(account.getProfile().getDepartment().getBranch().getName());
+
+		List<Gift> receivedGifts = CollectionUtil.copyWithoutNullElements(account.getReceivedGifts());
+		List<Gift> sentGifts = CollectionUtil.copyWithoutNullElements(account.getSentGifts());
+
+		user.setReceivedGiftCount(Long.valueOf(receivedGifts.size()));
+		user.setSentGiftCount(Long.valueOf(sentGifts.size()));
+
 		return user;
 	}
 

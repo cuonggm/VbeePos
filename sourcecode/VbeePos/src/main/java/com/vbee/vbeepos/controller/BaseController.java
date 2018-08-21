@@ -20,15 +20,13 @@ public class BaseController {
 
 	@ModelAttribute
 	public void setupUserProfile(HttpSession session, Model model) {
-		System.out.println("CHAY");
 		try {
 			Long id = getCurrentAccountId(session);
 			User user = userService.findById(id);
 			model.addAttribute("userProfile", user);
 		} catch (Exception e) {
-			System.out.println("LOI: " + e.getMessage());
-		}
 
+		}
 	}
 
 }
