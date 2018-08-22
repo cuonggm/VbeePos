@@ -52,8 +52,8 @@ public class GiftController extends BaseController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String list(Model model) {
-		List<GiftInfo> giftList = giftService.loadAllGiftInfo();
-		model.addAttribute("giftList", giftList);
+		List<GiftInfo> gifts = giftService.loadAllGiftInfo();
+		model.addAttribute("gifts", gifts);
 		return "gift-list";
 	}
 }

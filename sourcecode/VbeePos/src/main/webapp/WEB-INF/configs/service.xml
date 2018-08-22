@@ -16,6 +16,7 @@
 		<property name="target">
 			<bean class="com.vbee.vbeepos.service.impl.UserServiceImpl">
 				<property name="accountDAO" ref="accountDAO" />
+				<property name="giftDAO" ref="giftDAO" />
 			</bean>
 		</property>
 	</bean>

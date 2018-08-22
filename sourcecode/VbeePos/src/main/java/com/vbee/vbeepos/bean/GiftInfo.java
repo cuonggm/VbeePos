@@ -1,6 +1,7 @@
 package com.vbee.vbeepos.bean;
 
 import java.util.Date;
+import com.vbee.vbeepos.model.Gift;
 
 public class GiftInfo {
 	private Long id;
@@ -92,5 +93,18 @@ public class GiftInfo {
 
 	public void setReceiverEmail(String receiverEmail) {
 		this.receiverEmail = receiverEmail;
+	}
+	
+	public GiftInfo(Gift gift) {
+		this.setId(gift.getId());
+		this.setMessage(gift.getMessage());
+		this.setPoints(gift.getPoints());
+		this.setSentTime(gift.getSentTime());
+		this.setClaps(Long.valueOf(gift.getClaps().size()));
+		this.setHashTag(gift.getHashTag().getTag());
+		this.setSender(gift.getSender().getProfile().getName());
+		this.setSenderEmail(gift.getSender().getEmail());
+		this.setReceiver(gift.getReceiver().getProfile().getName());
+		this.setReceiverEmail(gift.getReceiver().getEmail());
 	}
 }
