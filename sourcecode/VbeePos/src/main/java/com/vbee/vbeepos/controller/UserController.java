@@ -3,17 +3,20 @@ package com.vbee.vbeepos.controller;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.vbee.vbeepos.bean.GiftInfo;
 import com.vbee.vbeepos.bean.User;
 import com.vbee.vbeepos.service.UserService;
 
 @Controller
 @RequestMapping(value = "/users")
-public class UserController {
+public class UserController extends BaseController{
 
 	@Autowired
 	private UserService userService;
@@ -29,7 +32,19 @@ public class UserController {
 		} catch (JsonProcessingException e) {
 			return "[]";
 		}
-
 	}
 
+	@RequestMapping(value="/{id}/receivedGifts", method = RequestMethod.GET)
+	public String getReceivedGifts(Model model, @PathVariable Long id) {
+		List<GiftInfo> receivedGifts = userService.loadReceivedGifts(id);
+		model.addAttribute("receivedGifts", receivedGifts);
+		return "received-gifts";
+	}
+	
+	@RequestMapping(value="/{id}/sentGifts", method = RequestMethod.GET)
+	public String getSentGifts(Model model, @PathVariable Long id) {
+		List<GiftInfo> sentGifts = userService.loadSentGifts(id);
+		model.addAttribute("sentGifts", sentGifts);
+		return "sent-gifts";
+	}
 }

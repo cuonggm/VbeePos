@@ -5,12 +5,12 @@
 
 <div class="timeline">
 	<div>
-		<h1 class="timeline-title">Timeline</h1>
+		<h1 class="timeline-title">Sent Gifts</h1>
 	</div>
 
 	<div class="timeline-body">
 		<div class="cards">
-			<c:forEach items="${gifts}" var="gift">
+			<c:forEach items="${sentGifts}" var="gift">
 				<div class="card">
 					<div class="card_header">
 						<span class="card_sender">From: <c:out
@@ -35,7 +35,7 @@
 						<c:out value="${gift.claps}"></c:out>
 					</div>
 				</div>
-		</c:forEach>
+			</c:forEach>
+		</div>
 	</div>
-</div>
 </div>

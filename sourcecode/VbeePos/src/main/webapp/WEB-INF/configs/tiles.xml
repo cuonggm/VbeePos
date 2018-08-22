@@ -39,4 +39,16 @@
 		<put-attribute name="body"
 			value="/views/gift/list.jsp" />
 	</definition>
+	
+	<!-- Gift -->
+	<definition name="received-gifts" extends="mainlayout">
+		<put-attribute name="body"
+			value="/views/users/receivedGifts.jsp" />
+	</definition>
+	
+	<!-- Gift -->
+	<definition name="sent-gifts" extends="mainlayout">
+		<put-attribute name="body"
+			value="/views/users/sentGifts.jsp" />
+	</definition>
 </tiles-definitions>
