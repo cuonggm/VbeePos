@@ -11,6 +11,8 @@ public interface GiftService extends BaseService<Long, Gift> {
 
 	List<GiftInfo> loadAllGiftInfo();
 	
+	List<GiftInfo> loadGiftInfo(int pageSize, int page);
+	
 	Long getClapCount(Long giftId);
 
 }
