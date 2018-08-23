@@ -21,6 +21,8 @@ import com.vbee.vbeepos.service.HashTagService;
 @RequestMapping(value = "/gifts")
 public class GiftController extends BaseController {
 
+	public static final int pageSize = 10;
+
 	@Autowired
 	private HashTagService hashTagService;
 
@@ -56,13 +58,13 @@ public class GiftController extends BaseController {
 			page = Long.valueOf(1);
 		}
 
-		int size = 10;
-
 		try {
 			int giftCount = giftService.loadAll().size();
-			int maxPage = giftCount / size + 1;
-			System.out.println("maxPage = " + maxPage);
-			List<GiftInfo> gifts = giftService.loadGiftInfo(size, page.intValue());
+			int maxPage = giftCount / pageSize;
+			if (maxPage * pageSize < giftCount) {
+				maxPage++;
+			}
+			List<GiftInfo> gifts = giftService.loadGiftInfo(pageSize, page.intValue());
 			model.addAttribute("gifts", gifts);
 			model.addAttribute("maxPage", maxPage);
 			model.addAttribute("currentPage", page);

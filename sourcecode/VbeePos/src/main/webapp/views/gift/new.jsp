@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="context" value="${pageContext.request.contextPath}" />
 
-<div style="margin: auto; width: 500px;">
+<div id="gift-new-form">
 	<h1>New Gift</h1>
 	<hr />
 

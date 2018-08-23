@@ -26,18 +26,12 @@
 </head>
 <body class="maximum">
 	<div class="container-fluid grey-bg maximum custom-container">
-		<div class="row maximum">
-			<tiles:insertAttribute name="leftpane"></tiles:insertAttribute>
-			<div class="col maximum">
-				<tiles:insertAttribute name="header"></tiles:insertAttribute>
-				<div class="body">
-					<!-- Flash -->
-					<c:if test="${not empty message}">
-						<div class="alert alert-${flash} m-0" role="alert">${message}</div>
-					</c:if>
-					<tiles:insertAttribute name="body"></tiles:insertAttribute>
-				</div>
-			</div>
+		<div class="maximum">
+			<!-- Flash -->
+			<c:if test="${not empty message}">
+				<div class="alert alert-${flash} m-0" role="alert">${message}</div>
+			</c:if>
+			<tiles:insertAttribute name="body"></tiles:insertAttribute>
 		</div>
 		<tiles:insertAttribute name="footer"></tiles:insertAttribute>
 	</div>

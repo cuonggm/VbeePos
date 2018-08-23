@@ -46,15 +46,37 @@
 						<c:out value="${gift.points}"></c:out>
 						<img class="zoom img-fluid" alt="Clap" id="claps"
 							src="${pageContext.request.contextPath}/assets/images/clap.png"
-							onclick="clap(${gift.id});">
-						<p id="clap-count-${gift.id}" class="d-inline">
-							<c:out value="${gift.claps}"></c:out>
-						</p>
-
+							onclick="clap(${gift.id});"> <a id="clap-count-${gift.id}"
+							class="d-inline badge badge-info" data-toggle="modal"
+							data-target="#popup-clappers" data-val="${gift.id}"
+							style="color: white;"> <c:out value="${gift.claps}"></c:out>
+						</a>
 					</div>
 				</div>
 			</c:forEach>
 		</div>
+	</div>
+</div>
+
+<div id="popup-clappers" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Clappers</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body">
+				<ul id="list-clappers" class="list-group">
+
+				</ul>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+
 	</div>
 </div>
 

@@ -1,8 +1,11 @@
 package com.vbee.vbeepos.service.impl;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import com.vbee.vbeepos.bean.Clapper;
 import com.vbee.vbeepos.dao.AccountDAO;
 import com.vbee.vbeepos.dao.ClapDAO;
 import com.vbee.vbeepos.dao.GiftDAO;
@@ -57,6 +60,33 @@ public class ClapServiceImpl implements ClapService {
 	@Override
 	public List<Clap> clapsOf(Long giftId) {
 		return clapDAO.clapsOf(giftId);
+	}
+
+	@Override
+	public List<Clapper> clappers(Long giftId) {
+		List<Clap> claps = clapsOf(giftId);
+		HashMap<Long, List<Clap>> map = new HashMap<>();
+		for (Clap clap : claps) {
+			if (map.containsKey(clap.getClapper().getId())) {
+				map.get(clap.getClapper().getId()).add(clap);
+			} else {
+				List<Clap> value = new ArrayList<>();
+				value.add(clap);
+				map.put(clap.getClapper().getId(), value);
+			}
+		}
+		List<Clapper> clappers = new ArrayList<>();
+		try {
+			for (Long key : map.keySet()) {
+				Clapper clapper = new Clapper();
+				clapper.setName(map.get(key).get(0).getClapper().getProfile().getName());
+				clapper.setCount(map.get(key).size());
+				clappers.add(clapper);
+			}
+		} catch (Exception e) {
+
+		}
+		return clappers;
 	}
 
 	public ClapDAO getClapDAO() {
