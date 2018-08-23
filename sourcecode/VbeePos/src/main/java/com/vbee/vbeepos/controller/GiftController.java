@@ -1,5 +1,6 @@
 package com.vbee.vbeepos.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.vbee.vbeepos.bean.GiftInfo;
 import com.vbee.vbeepos.model.HashTag;
 import com.vbee.vbeepos.service.GiftService;
@@ -26,7 +26,7 @@ public class GiftController extends BaseController {
 
 	@Autowired
 	private GiftService giftService;
-	
+
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
 	public String newz(Model model) {
 		List<HashTag> hashTags = hashTagService.loadAll();
@@ -51,9 +51,25 @@ public class GiftController extends BaseController {
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String list(Model model) {
-		List<GiftInfo> gifts = giftService.loadAllGiftInfo();
-		model.addAttribute("gifts", gifts);
+	public String list(Model model, @RequestParam(required = false) Long page) {
+		if (page == null) {
+			page = Long.valueOf(1);
+		}
+
+		int size = 10;
+
+		try {
+			int giftCount = giftService.loadAll().size();
+			int maxPage = giftCount / size + 1;
+			System.out.println("maxPage = " + maxPage);
+			List<GiftInfo> gifts = giftService.loadGiftInfo(size, page.intValue());
+			model.addAttribute("gifts", gifts);
+			model.addAttribute("maxPage", maxPage);
+			model.addAttribute("currentPage", page);
+		} catch (Exception e) {
+			model.addAttribute("gifts", Collections.emptyList());
+		}
+
 		return "gift-list";
 	}
 }

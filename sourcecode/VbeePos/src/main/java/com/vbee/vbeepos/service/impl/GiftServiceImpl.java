@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-
 import com.vbee.vbeepos.bean.GiftInfo;
 import com.vbee.vbeepos.dao.AccountDAO;
 import com.vbee.vbeepos.dao.GiftDAO;
@@ -84,6 +83,16 @@ public class GiftServiceImpl implements GiftService {
 		} catch (Exception e) {
 			return Collections.emptyList();
 		}
+	}
+
+	@Override
+	public List<GiftInfo> loadGiftInfo(int pageSize, int page) {
+		List<Gift> gifts = giftDAO.loadGiftInfo(pageSize, page);
+		List<GiftInfo> giftInfos = new ArrayList<>();
+		for (Gift gift : gifts) {
+			giftInfos.add(new GiftInfo(gift));
+		}
+		return giftInfos;
 	}
 
 	@Override

@@ -6,9 +6,23 @@
 <div class="timeline">
 	<div>
 		<h1 class="timeline-title">Timeline</h1>
+		<hr />
 	</div>
-
 	<div class="timeline-body">
+		<nav aria-label="">
+			<ul class="pagination">
+				<c:forEach var="i" begin="1" end="${maxPage}">
+					<c:if test="${currentPage == i}">
+						<li class="page-item active"><a class="page-link"
+							href="${context}/gifts/?page=${i}">${i}</a></li>
+					</c:if>
+					<c:if test="${currentPage != i}">
+						<li class="page-item"><a class="page-link"
+							href="${context}/gifts/?page=${i}">${i}</a></li>
+					</c:if>
+				</c:forEach>
+			</ul>
+		</nav>
 		<div class="cards">
 			<c:forEach items="${gifts}" var="gift">
 				<div class="card">

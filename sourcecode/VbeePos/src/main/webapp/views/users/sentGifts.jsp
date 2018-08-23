@@ -6,6 +6,7 @@
 <div class="timeline">
 	<div>
 		<h1 class="timeline-title">Sent Gifts</h1>
+		<hr />
 	</div>
 
 	<div class="timeline-body">
