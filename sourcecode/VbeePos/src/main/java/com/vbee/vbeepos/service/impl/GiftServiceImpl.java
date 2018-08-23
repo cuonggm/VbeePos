@@ -14,6 +14,7 @@ import com.vbee.vbeepos.model.Account;
 import com.vbee.vbeepos.model.Gift;
 import com.vbee.vbeepos.model.HashTag;
 import com.vbee.vbeepos.service.GiftService;
+import com.vbee.vbeepos.util.CollectionUtil;
 
 public class GiftServiceImpl implements GiftService {
 
@@ -75,16 +76,22 @@ public class GiftServiceImpl implements GiftService {
 		List<GiftInfo> giftInfoList = new ArrayList<>();
 		try {
 			List<Gift> giftList = giftDAO.loadAll();
-			for(Gift gift : giftList) {
+			for (Gift gift : giftList) {
 				GiftInfo giftInfo = new GiftInfo(gift);
 				giftInfoList.add(giftInfo);
 			}
 			return giftInfoList;
-		}catch(Exception e) {
+		} catch (Exception e) {
 			return Collections.emptyList();
 		}
 	}
-	
+
+	@Override
+	public Long getClapCount(Long giftId) {
+		int clapCount = CollectionUtil.copyWithoutNullElements(giftDAO.findById(giftId).getClaps()).size();
+		return Long.valueOf(clapCount);
+	}
+
 	public GiftDAO getGiftDAO() {
 		return giftDAO;
 	}

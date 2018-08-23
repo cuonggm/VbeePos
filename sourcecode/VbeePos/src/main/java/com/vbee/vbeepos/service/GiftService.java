@@ -10,5 +10,7 @@ public interface GiftService extends BaseService<Long, Gift> {
 	Gift createAndSave(Long senderId, Long receiverId, String hashTag, Integer points, String message) throws Exception;
 
 	List<GiftInfo> loadAllGiftInfo();
+	
+	Long getClapCount(Long giftId);
 
 }

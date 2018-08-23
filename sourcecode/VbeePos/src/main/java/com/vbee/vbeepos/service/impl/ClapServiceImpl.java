@@ -39,7 +39,7 @@ public class ClapServiceImpl implements ClapService {
 	}
 
 	@Override
-	public Clap clapAGift(Long giftId, Long clapperId) throws Exception {
+	public Clap createClap(Long giftId, Long clapperId) throws Exception {
 		Gift gift = giftDAO.findById(giftId);
 		Account clapper = accountDAO.findById(clapperId);
 		if (clapper.getPoints() < 2) {
