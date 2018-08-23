@@ -3,9 +3,13 @@ function clap(giftId) {
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
 			var respond = JSON.parse(this.responseText);
-			document.getElementById('clap-count-' + giftId).innerHTML = respond.clapCount;
+			if (typeof respond.clapCount != 'undefined') {
+				document.getElementById('clap-count-' + giftId).innerHTML = respond.clapCount;
+			}
 			if (document.getElementById('profile-points') !== null) {
-				document.getElementById('profile-points').innerHTML = respond.points;
+				if (typeof respond.points != 'undefined') {
+					document.getElementById('profile-points').innerHTML = respond.points;
+				}
 			}
 		}
 	};

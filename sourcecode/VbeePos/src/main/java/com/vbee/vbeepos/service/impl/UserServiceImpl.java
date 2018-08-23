@@ -122,19 +122,23 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> scoredUsers() {
 		List<User> list = loadAll();
-		Collections.sort(list, new Comparator<User>() {
-			@Override
-			public int compare(User u1, User u2) {
-				return u2.getPoints().intValue() - u1.getPoints().intValue();
+		try {
+			Collections.sort(list, new Comparator<User>() {
+				@Override
+				public int compare(User user1, User user2) {
+					return user2.getPoints().intValue() - user1.getPoints().intValue();
+				}
+			});
+			for (int i = 0; i < list.size(); i++) {
+				if (list.get(i) == null) {
+					break;
+				}
+				list.get(i).setScore(Long.valueOf(i + 1));
 			}
-		});
-		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i) == null) {
-				break;
-			}
-			list.get(i).setScore(Long.valueOf(i + 1));
+			return list;
+		} catch (Exception e) {
+			return Collections.emptyList();
 		}
-		return list;
 	}
 
 	public GiftDAO getGiftDAO() {
