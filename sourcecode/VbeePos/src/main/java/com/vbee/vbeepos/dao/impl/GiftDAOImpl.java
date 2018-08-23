@@ -2,38 +2,59 @@ package com.vbee.vbeepos.dao.impl;
 
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import org.hibernate.query.Query;
 
 import com.vbee.vbeepos.dao.GiftDAO;
+import com.vbee.vbeepos.model.Account;
 import com.vbee.vbeepos.model.Gift;
 
 public class GiftDAOImpl extends GenericDAO<Long, Gift> implements GiftDAO {
 
 	@Override
-	public List<Gift> findBySender(Long id) {
-		Query<Gift> query = getSession().createQuery("select g from Gift as g"
-				+ " inner join g.sender as sender"
-				+ " where sender.id = :id"
-				+ " order by g.sentTime DESC", Gift.class);
-		query.setParameter("id", id);
+	public List<Gift> findBySender(Account sender) {
+		CriteriaBuilder criteriaBuilder = getSession().getCriteriaBuilder();
+		
+		CriteriaQuery<Gift> criteriaQuery = criteriaBuilder.createQuery(Gift.class);
+		Root<Gift> giftRoot = criteriaQuery.from(Gift.class);
+		criteriaQuery.select(giftRoot);
+		criteriaQuery.where(criteriaBuilder.equal(giftRoot.get("sender"), sender));
+		
+		criteriaQuery.orderBy(criteriaBuilder.desc(giftRoot.get("sentTime")));
+		
+		Query<Gift> query = getSession().createQuery(criteriaQuery);
 		return query.getResultList();
 	}
 	
 	@Override
-	public List<Gift> findByReceiver(Long id) {
-		Query<Gift> query = getSession().createQuery("select g from Gift as g"
-				+ " inner join g.receiver as receiver"
-				+ " where receiver.id = :id"
-				+ " order by g.sentTime DESC", Gift.class);
-		query.setParameter("id", id);
+	public List<Gift> findByReceiver(Account receiver) {
+		CriteriaBuilder criteriaBuilder = getSession().getCriteriaBuilder();
+		
+		CriteriaQuery<Gift> criteriaQuery = criteriaBuilder.createQuery(Gift.class);
+		Root<Gift> giftRoot = criteriaQuery.from(Gift.class);
+		criteriaQuery.select(giftRoot);
+		criteriaQuery.where(criteriaBuilder.equal(giftRoot.get("receiver"), receiver));
+
+		criteriaQuery.orderBy(criteriaBuilder.desc(giftRoot.get("sentTime")));
+		
+		Query<Gift> query = getSession().createQuery(criteriaQuery);
 		return query.getResultList();
 	}
 
 	@Override
 	public List<Gift> loadAll() {
-		Query<Gift> query = getSession().createQuery("from Gift g order by g.sentTime DESC", Gift.class);
+		CriteriaBuilder criteriaBuilder = getSession().getCriteriaBuilder();
+		
+		CriteriaQuery<Gift> criteriaQuery = criteriaBuilder.createQuery(Gift.class);
+		Root<Gift> giftRoot = criteriaQuery.from(Gift.class);
+		criteriaQuery.select(giftRoot);
+		criteriaQuery.orderBy(criteriaBuilder.desc(giftRoot.get("sentTime")));
+		
+		Query<Gift> query = getSession().createQuery(criteriaQuery);
+		
 		return query.getResultList();
 	}
-	
 	
 }

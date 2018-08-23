@@ -80,11 +80,13 @@ public class UserServiceImpl implements UserService {
 	public List<GiftInfo> loadReceivedGifts(Long id) {
 		List<GiftInfo> receivedGiftsInfo = new ArrayList<>();
 		try {
-			List<Gift> receivedGifts = giftDAO.findByReceiver(id);
+			Account acc = accountDAO.findById(id);
+			List<Gift> receivedGifts = giftDAO.findByReceiver(acc);
 			for(Gift gift : receivedGifts) {
 				GiftInfo giftInfo = new GiftInfo(gift);
 				receivedGiftsInfo.add(giftInfo);
 			}
+
 			return receivedGiftsInfo;
 		}catch(Exception e) {
 			return Collections.emptyList();
@@ -95,7 +97,8 @@ public class UserServiceImpl implements UserService {
 	public List<GiftInfo> loadSentGifts(Long id) {
 		List<GiftInfo> sentGiftsInfo = new ArrayList<>();
 		try {
-			List<Gift> sentGifts = giftDAO.findBySender(id);
+			Account acc = accountDAO.findById(id);
+			List<Gift> sentGifts = giftDAO.findBySender(acc);
 			for(Gift gift : sentGifts) {
 				GiftInfo giftInfo = new GiftInfo(gift);
 				sentGiftsInfo.add(giftInfo);
