@@ -31,11 +31,17 @@
 							src="${pageContext.request.contextPath}/assets/images/points.png">
 						<c:out value="${gift.points}"></c:out>
 						<img class="zoom img-fluid" alt="Clap" id="claps"
-							src="${pageContext.request.contextPath}/assets/images/clap.png">
-						<c:out value="${gift.claps}"></c:out>
+							src="${pageContext.request.contextPath}/assets/images/clap.png"
+							onclick="clap(${gift.id});">
+						<p id="clap-count-${gift.id}" class="d-inline">
+							<c:out value="${gift.claps}"></c:out>
+						</p>
+
 					</div>
 				</div>
-		</c:forEach>
+			</c:forEach>
+		</div>
 	</div>
 </div>
-</div>
+
+<script src="<c:url value="/assets/js/clap.js" />"></script>

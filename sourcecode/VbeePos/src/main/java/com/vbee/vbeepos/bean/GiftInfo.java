@@ -1,7 +1,10 @@
 package com.vbee.vbeepos.bean;
 
 import java.util.Date;
+import java.util.List;
+import com.vbee.vbeepos.model.Clap;
 import com.vbee.vbeepos.model.Gift;
+import com.vbee.vbeepos.util.CollectionUtil;
 
 public class GiftInfo {
 	private Long id;
@@ -94,13 +97,14 @@ public class GiftInfo {
 	public void setReceiverEmail(String receiverEmail) {
 		this.receiverEmail = receiverEmail;
 	}
-	
+
 	public GiftInfo(Gift gift) {
 		this.setId(gift.getId());
 		this.setMessage(gift.getMessage());
 		this.setPoints(gift.getPoints());
 		this.setSentTime(gift.getSentTime());
-		this.setClaps(Long.valueOf(gift.getClaps().size()));
+		List<Clap> claps = CollectionUtil.copyWithoutNullElements(gift.getClaps());
+		this.setClaps(Long.valueOf(claps.size()));
 		this.setHashTag(gift.getHashTag().getTag());
 		this.setSender(gift.getSender().getProfile().getName());
 		this.setSenderEmail(gift.getSender().getEmail());
