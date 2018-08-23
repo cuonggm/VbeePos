@@ -18,11 +18,11 @@
 			<li class="nav-item"><a class="btn btn-light"
 				href="${context}/gifts/new/">Send Gift</a></li>
 			<c:if test="${not empty userProfile}">
-				<li class="nav-item pl-3"><a class="btn btn-light" href="#">Received
+				<li class="nav-item pl-3"><a class="btn btn-light" href="${context}/users/${userProfile.accountId }/receivedGifts/">Received
 						Gifts <span class="badge badge-danger">
 							${userProfile.receivedGiftCount} </span>
 				</a></li>
-				<li class="nav-item pl-3"><a class="btn btn-light" href="#">Sent
+				<li class="nav-item pl-3"><a class="btn btn-light" href="${context}/users/${userProfile.accountId }/sentGifts">Sent
 						Gifts <span class="badge badge-danger">
 							${userProfile.sentGiftCount} </span>
 				</a></li>
