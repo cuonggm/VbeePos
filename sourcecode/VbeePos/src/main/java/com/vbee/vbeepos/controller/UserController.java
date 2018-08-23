@@ -16,7 +16,7 @@ import com.vbee.vbeepos.service.UserService;
 
 @Controller
 @RequestMapping(value = "/users")
-public class UserController extends BaseController{
+public class UserController extends BaseController {
 
 	@Autowired
 	private UserService userService;
@@ -34,17 +34,28 @@ public class UserController extends BaseController{
 		}
 	}
 
-	@RequestMapping(value="/{id}/receivedGifts", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}/receivedGifts", method = RequestMethod.GET)
 	public String getReceivedGifts(Model model, @PathVariable Long id) {
 		List<GiftInfo> receivedGifts = userService.loadReceivedGifts(id);
 		model.addAttribute("receivedGifts", receivedGifts);
 		return "received-gifts";
 	}
-	
-	@RequestMapping(value="/{id}/sentGifts", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/{id}/sentGifts", method = RequestMethod.GET)
 	public String getSentGifts(Model model, @PathVariable Long id) {
 		List<GiftInfo> sentGifts = userService.loadSentGifts(id);
 		model.addAttribute("sentGifts", sentGifts);
 		return "sent-gifts";
+	}
+
+	@RequestMapping(value = "/score", method = RequestMethod.GET)
+	public String scoreUsers(Model model) {
+		try {
+			List<User> users = userService.scoredUsers();
+			model.addAttribute("users", users);
+		} catch (Exception e) {
+
+		}
+		return "users-score";
 	}
 }
