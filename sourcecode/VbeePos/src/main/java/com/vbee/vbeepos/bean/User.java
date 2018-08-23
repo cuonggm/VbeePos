@@ -13,6 +13,7 @@ public class User {
 	private String branch;
 	private Long receivedGiftCount;
 	private Long sentGiftCount;
+	private Long points;
 
 	public User() {
 
@@ -104,6 +105,14 @@ public class User {
 
 	public void setSentGiftCount(Long sentGiftCount) {
 		this.sentGiftCount = sentGiftCount;
+	}
+
+	public Long getPoints() {
+		return points;
+	}
+
+	public void setPoints(Long points) {
+		this.points = points;
 	}
 
 }

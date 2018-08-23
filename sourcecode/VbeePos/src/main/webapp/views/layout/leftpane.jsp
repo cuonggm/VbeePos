@@ -16,6 +16,9 @@
 			<p id="profile-birthday">Birthday: ${userProfile.birthday}</p>
 			<p id="profile-department">Department: ${userProfile.department}</p>
 			<p id="profile-branch">Branch: ${userProfile.branch}</p>
+			<p>
+				Points: <span id="profile-points">${userProfile.points}</span>
+			</p>
 		</div>
 	</c:if>
 
