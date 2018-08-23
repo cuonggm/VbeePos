@@ -58,6 +58,7 @@ public class UserServiceImpl implements UserService {
 		user.setBirthday(DateTimeUtil.format(account.getProfile().getBirthday()));
 		user.setDepartment(account.getProfile().getDepartment().getName());
 		user.setBranch(account.getProfile().getDepartment().getBranch().getName());
+		user.setPoints(Long.valueOf(account.getPoints()));
 
 		List<Gift> receivedGifts = CollectionUtil.copyWithoutNullElements(account.getReceivedGifts());
 		List<Gift> sentGifts = CollectionUtil.copyWithoutNullElements(account.getSentGifts());
@@ -82,29 +83,29 @@ public class UserServiceImpl implements UserService {
 		try {
 			Account acc = accountDAO.findById(id);
 			List<Gift> receivedGifts = giftDAO.findByReceiver(acc);
-			for(Gift gift : receivedGifts) {
+			for (Gift gift : receivedGifts) {
 				GiftInfo giftInfo = new GiftInfo(gift);
 				receivedGiftsInfo.add(giftInfo);
 			}
 
 			return receivedGiftsInfo;
-		}catch(Exception e) {
+		} catch (Exception e) {
 			return Collections.emptyList();
 		}
 	}
-	
+
 	@Override
 	public List<GiftInfo> loadSentGifts(Long id) {
 		List<GiftInfo> sentGiftsInfo = new ArrayList<>();
 		try {
 			Account acc = accountDAO.findById(id);
 			List<Gift> sentGifts = giftDAO.findBySender(acc);
-			for(Gift gift : sentGifts) {
+			for (Gift gift : sentGifts) {
 				GiftInfo giftInfo = new GiftInfo(gift);
 				sentGiftsInfo.add(giftInfo);
 			}
 			return sentGiftsInfo;
-		}catch(Exception e) {
+		} catch (Exception e) {
 			return Collections.emptyList();
 		}
 	}
