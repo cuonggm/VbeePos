@@ -14,6 +14,7 @@ public class User {
 	private Long receivedGiftCount;
 	private Long sentGiftCount;
 	private Long points;
+	private Long score;
 
 	public User() {
 
@@ -113,6 +114,14 @@ public class User {
 
 	public void setPoints(Long points) {
 		this.points = points;
+	}
+
+	public Long getScore() {
+		return score;
+	}
+
+	public void setScore(Long score) {
+		this.score = score;
 	}
 
 }

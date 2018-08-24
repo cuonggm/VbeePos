@@ -56,4 +56,10 @@
 		<put-attribute name="body"
 			value="/views/users/sentGifts.jsp" />
 	</definition>
+
+	<!-- User Score -->
+	<definition name="users-score" extends="mainlayout">
+		<put-attribute name="body"
+			value="/views/users/score.jsp" />
+	</definition>
 </tiles-definitions>

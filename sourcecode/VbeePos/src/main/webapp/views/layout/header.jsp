@@ -31,6 +31,8 @@
 			</c:if>
 			<li class="nav-item pl-3"><a class="btn btn-light"
 				href="${context}/gifts/">Gift List </a></li>
+			<li class="nav-item pl-3"><a class="btn btn-light"
+				href="${context}/users/score/">Score</a></li>
 		</ul>
 		<form class="form-inline ml-auto mr-3 pull-right"
 			action="${context}/logout/" method="post">

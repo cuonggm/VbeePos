@@ -12,6 +12,9 @@ public interface UserService {
 	User findById(Long id);
 
 	List<GiftInfo> loadReceivedGifts(Long id);
-	
+
 	List<GiftInfo> loadSentGifts(Long id);
+
+	List<User> scoredUsers();
+
 }

@@ -2,6 +2,7 @@ package com.vbee.vbeepos.service.impl;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import com.vbee.vbeepos.bean.GiftInfo;
@@ -34,7 +35,15 @@ public class UserServiceImpl implements UserService {
 							+ DateTimeUtil.format(account.getProfile().getBirthday()) + " | "
 							+ account.getProfile().getGender() + " | "
 							+ account.getProfile().getDepartment().getName());
-
+					user.setName(account.getProfile().getName());
+					user.setAccountId(account.getId());
+					user.setEmail(account.getEmail());
+					user.setGender(account.getProfile().getGender());
+					user.setRole(account.getRole());
+					user.setBirthday(DateTimeUtil.format(account.getProfile().getBirthday()));
+					user.setDepartment(account.getProfile().getDepartment().getName());
+					user.setBranch(account.getProfile().getDepartment().getBranch().getName());
+					user.setPoints(Long.valueOf(account.getPoints()));
 					userList.add(user);
 				}
 			}
@@ -108,6 +117,24 @@ public class UserServiceImpl implements UserService {
 		} catch (Exception e) {
 			return Collections.emptyList();
 		}
+	}
+
+	@Override
+	public List<User> scoredUsers() {
+		List<User> list = loadAll();
+		Collections.sort(list, new Comparator<User>() {
+			@Override
+			public int compare(User u1, User u2) {
+				return u2.getPoints().intValue() - u1.getPoints().intValue();
+			}
+		});
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i) == null) {
+				break;
+			}
+			list.get(i).setScore(Long.valueOf(i + 1));
+		}
+		return list;
 	}
 
 	public GiftDAO getGiftDAO() {
