@@ -4,7 +4,7 @@
 <c:set var="context" value="${pageContext.request.contextPath}" />
 
 <nav
-	class="navbar navbar-expand-lg navbar-light bg-primary-color maximum-width custom-header">
+	class="navbar navbar-expand-lg navbar-light bg-primary-color custom-header">
 	<a class="navbar-brand" href="/vbeepos" style="color: white;">VbeePos</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#navbarSupportedContent"

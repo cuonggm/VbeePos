@@ -88,11 +88,15 @@ public class GiftServiceImpl implements GiftService {
 	@Override
 	public List<GiftInfo> loadGiftInfo(int pageSize, int page) {
 		List<Gift> gifts = giftDAO.loadGiftInfo(pageSize, page);
-		List<GiftInfo> giftInfos = new ArrayList<>();
-		for (Gift gift : gifts) {
-			giftInfos.add(new GiftInfo(gift));
+		try {
+			List<GiftInfo> giftInfos = new ArrayList<>();
+			for (Gift gift : gifts) {
+				giftInfos.add(new GiftInfo(gift));
+			}
+			return giftInfos;
+		} catch (Exception e) {
+			return Collections.emptyList();
 		}
-		return giftInfos;
 	}
 
 	@Override

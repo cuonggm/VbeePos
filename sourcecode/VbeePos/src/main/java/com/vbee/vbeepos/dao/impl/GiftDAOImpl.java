@@ -59,7 +59,7 @@ public class GiftDAOImpl extends GenericDAO<Long, Gift> implements GiftDAO {
 	public List<Gift> loadGiftInfo(int pageSize, int page) {
 		List<Gift> allGifts = loadAll();
 		int fromIndex = pageSize * (page - 1);
-		int toIndex = pageSize * page - 1;
+		int toIndex = pageSize * page;
 		if (toIndex > allGifts.size()) {
 			toIndex = allGifts.size();
 		}

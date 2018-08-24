@@ -15,37 +15,42 @@
 			value="/views/layout/footer.jsp" />
 	</definition>
 
+	<definition name="simplelayout"
+		template="/views/layout/simplelayout.jsp">
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"
+			value="/views/layout/footer.jsp" />
+	</definition>
+
 	<!-- Home -->
 	<definition name="home" extends="mainlayout">
 		<put-attribute name="body" value="/views/home.jsp" />
 	</definition>
 
 	<!-- Login -->
-	<definition name="login" extends="mainlayout">
+	<definition name="login" extends="simplelayout">
 		<put-attribute name="header" value="" />
 		<put-attribute name="leftpane" value="" />
 		<put-attribute name="body"
 			value="/views/login/login.jsp" />
 	</definition>
-	
+
 	<!-- Gift -->
 	<definition name="gift-new" extends="mainlayout">
-		<put-attribute name="body"
-			value="/views/gift/new.jsp" />
+		<put-attribute name="body" value="/views/gift/new.jsp" />
 	</definition>
 
 	<!-- Gift -->
 	<definition name="gift-list" extends="mainlayout">
-		<put-attribute name="body"
-			value="/views/gift/list.jsp" />
+		<put-attribute name="body" value="/views/gift/list.jsp" />
 	</definition>
-	
+
 	<!-- Gift -->
 	<definition name="received-gifts" extends="mainlayout">
 		<put-attribute name="body"
 			value="/views/users/receivedGifts.jsp" />
 	</definition>
-	
+
 	<!-- Gift -->
 	<definition name="sent-gifts" extends="mainlayout">
 		<put-attribute name="body"
